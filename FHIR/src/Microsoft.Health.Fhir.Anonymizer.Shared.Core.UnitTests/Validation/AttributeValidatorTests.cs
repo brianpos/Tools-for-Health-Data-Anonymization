@@ -27,7 +27,7 @@ namespace Microsoft.Health.Fhir.Anonymizer.Core.UnitTests.Validation
             var validationErrors = _validator.Validate(resource).ToList();
             Assert.Single(validationErrors);
 
-            var expectedError = id + " is not a correctly formatted Id";
+            var expectedError = $"'{id}' is not a correct literal for an id. At Patient.IdElement.Value.";
             var actualError = validationErrors.FirstOrDefault()?.ErrorMessage;
             Assert.Equal(expectedError, actualError);
         }
@@ -51,9 +51,9 @@ namespace Microsoft.Health.Fhir.Anonymizer.Core.UnitTests.Validation
             var validationErrors = _validator.Validate(resource).ToList();
             Assert.Single(validationErrors);
 
-            var expectedError = "Xml can not be parsed or is not valid according to the (limited) FHIR scheme";
+            var expectedError = "Value is not well-form";
             var actualError = validationErrors.FirstOrDefault()?.ErrorMessage;
-            Assert.Equal(expectedError, actualError);
+            Assert.True(actualError.Contains(expectedError));;
         }
         
         [Fact]
@@ -68,7 +68,7 @@ namespace Microsoft.Health.Fhir.Anonymizer.Core.UnitTests.Validation
             var validationErrors = _validator.Validate(resource).ToList();
             Assert.Single(validationErrors);
 
-            var expectedError = "Element with min. cardinality 1 cannot be null";
+            var expectedError = "Element with minimum cardinality 1 cannot be null. At Task.IntentElement.";
             var actualError = validationErrors.FirstOrDefault()?.ErrorMessage;
             Assert.Equal(expectedError, actualError);
 

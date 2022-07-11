@@ -27,7 +27,8 @@ namespace Microsoft.Health.Fhir.Anonymizer.FunctionalTests
         public static IEnumerable<object[]> GetR4OnlyResources()
         {
             yield return new object[] { "R4OnlyResource/Organizationaffiliation.json", "R4OnlyResource/Organizationaffiliation-target.json" };
-            yield return new object[] { "R4OnlyResource/MedicinalProduct.json", "R4OnlyResource/MedicinalProduct-target.json" };
+            // This resource was removed from R4B due to significant issues and a change of direction for this part of the spec, now called MedicinalProductDefinition
+            // yield return new object[] { "R4OnlyResource/MedicinalProduct.json", "R4OnlyResource/MedicinalProduct-target.json" };
             yield return new object[] { "R4OnlyResource/ServiceRequest.json", "R4OnlyResource/ServiceRequest-target.json" };
         }
 
